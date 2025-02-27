@@ -1,13 +1,12 @@
 #include <iostream>
 
-class Game {
+class Game 
+{
 protected:
-	int rooms[5][3] = 
+	int rooms[3][3] = 
 	{ 1, 2, 3,
 	  4, 5, 6,
-	  7, 8, 9,
-	  10, 11, 12,
-	  13, 14, 15 
+	  7, 8, 9, 
 	};
 
 public:
@@ -15,4 +14,11 @@ public:
 	~Game();
 	void Run();
 
+};
+
+class Item 
+{
+public:
+	std::string description;
+	void use();
 };

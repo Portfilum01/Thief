@@ -32,6 +32,11 @@ public:
 	void use();
 };
 
+class Bed : public Item
+{
+	string description = "My bed, its so warm and inviting. I really should get a move on, though.";
+};
+
 int main()
 {
 	return 0;

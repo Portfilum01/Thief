@@ -8,6 +8,7 @@ class Game
 private:
 	int rooms[3][3];
 
+	// Attempt at a pointer?
 	int* Player;
 
 public:
@@ -31,11 +32,16 @@ private:
 // Room base
 class Room
 {
+	// Points to an item
 	int* item;
+	//Empty description
 	string description;
 
+	//Room constructor for generating a nice room to walk around
 	Room(string description, Item item);
+	// Destructor
 	~Room();
+	// The actual description
 	const string description();
 };
 
@@ -46,7 +52,10 @@ class Room
 class Item
 {
 public:
+	//A string description
 	string description;
+
+	//This is how you'll use the item
 	void use();
 };
 

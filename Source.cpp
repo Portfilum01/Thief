@@ -1,13 +1,16 @@
 #include <iostream>
+using namespace std;
 
 class Game 
 {
-protected:
+private:
 	int rooms[3][3] = 
 	{ 1, 2, 3,
 	  4, 5, 6,
 	  7, 8, 9, 
 	};
+	
+	/*playerCharacter*;*/
 
 public:
 	Game();
@@ -16,9 +19,20 @@ public:
 
 };
 
+class Player
+{
+private:
+	string powerList[5] = { "Levitate", "Thermal Transfer", "Surge", "Aquagenesis", "Expel" };
+};
+
 class Item 
 {
 public:
-	std::string description;
+	string description;
 	void use();
 };
+
+int main()
+{
+	return 0;
+}

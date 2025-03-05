@@ -44,7 +44,7 @@ class Bed : Item
 {
 public:
 	Bed();
-	const void Description();
+	void Description();
 	void Use();
 };
 
@@ -52,7 +52,7 @@ class Mess : Item
 {
 public:
 	Mess();
-	const void Description();
+	void Description();
 	void Use();
 };
 
@@ -61,7 +61,7 @@ class Window : Item
 {
 public:
 	Window();
-	const void Description();
+	void Description();
 	void Use();
 };
 
@@ -69,7 +69,7 @@ class Ghost : Item
 {
 public:
 	Ghost();
-	const void Description();
+	void Description();
 	void Use();
 };
 
@@ -77,7 +77,7 @@ class Shower : Item
 {
 public:
 	Shower();
-	const void Description();
+	void Description();
 	void Use();
 };
 
@@ -85,7 +85,7 @@ class CatBowl : Item
 {
 public:
 	CatBowl();
-	const void Description();
+	void Description();
 	void Use();
 };
 
@@ -93,7 +93,7 @@ class Snowheap : Item
 {
 public:
 	Snowheap();
-	const void Description();
+	void Description();
 	void Use();
 };
 
@@ -101,7 +101,7 @@ class Car : Item
 {
 public:
 	Car();
-	const void Description();
+	void Description();
 	void Use();
 };
 

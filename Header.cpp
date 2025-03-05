@@ -130,6 +130,7 @@ void Snowheap::Use()
 	return Description();
 }
 
+// Car Item Class
 Car::Car()
 {
 	batteryIsDead = true;

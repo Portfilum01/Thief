@@ -63,9 +63,27 @@ void Ghost::Description()
 
 void Ghost::Use()
 {
-
-	// print "A deep sigh leaves your lungs, and as you focus, your mind sharpens, a wispy form latches to the room with rueful eyes"
 	//		 "you extend your hand out, and with a sudden shriek, the phantom fades away. Its presence dampened."
-	description = "Now ghost free.";
+	description = 
+		"Having sharpened your mind, you can notice the wispy form that latches to the room with rueful eyes."
+		" 'Where are you all coming from...' you'd mumble to yourself.";
+	return Description();
+}
+
+Shower::Shower()
+{
+	playerClean = false;
+}
+
+void Shower::Description()
+{
+	description = "The pristine white tiles are encased in glass, might be worth having a quick shower before heading out.";
+	return void();
+}
+
+void Shower::Use()
+{
+	playerClean = true;
+	description = "You've already showered. It'd be a waste of water doing it again.";
 	return Description();
 }

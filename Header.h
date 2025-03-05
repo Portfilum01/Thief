@@ -76,6 +76,7 @@ class Shower : Item
 {
 public:
 	Shower();
+	bool playerClean;
 	void Description();
 	void Use();
 };

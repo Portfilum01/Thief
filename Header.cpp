@@ -1,19 +1,28 @@
 #include "Header.h"
 
-int Game::rooms()
+// Base item class. Everything is empty </3.
+void Item::description()
 {
-	int rooms[3][3] =
-	{ 1, 2, 3,
-	  4, 5, 6,
-	  7, 8, 9,
-	};
-	return 0;
+	return void();
 }
 
-Game::Game()
+void Item::use()
 {
-	string characterInfo;
-	cin >> characterInfo;
-
+	return void();
 }
 
+// Bed item class
+
+Bed::Bed()
+{
+}
+
+const void Bed::Description()
+{
+	description = 
+	return void();
+}
+
+void Bed::Use()
+{
+}

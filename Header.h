@@ -27,14 +27,12 @@ private:
 };
 
 
-
-
 // Items base
 class Item
 {
 public:
 	//A string description
-	const void description();
+	void description();
 
 	//This is how you'll use the item
 	void use();
@@ -42,7 +40,7 @@ public:
 
 
 //Derived Items
-class Bed : public Item
+class Bed : Item
 {
 public:
 	Bed();
@@ -50,7 +48,7 @@ public:
 	void Use();
 };
 
-class Mess : public Item
+class Mess : Item
 {
 public:
 	Mess();
@@ -59,7 +57,7 @@ public:
 };
 
 
-class Window : public Item
+class Window : Item
 {
 public:
 	Window();
@@ -67,7 +65,7 @@ public:
 	void Use();
 };
 
-class Ghost : public Item
+class Ghost : Item
 {
 public:
 	Ghost();
@@ -75,7 +73,7 @@ public:
 	void Use();
 };
 
-class Shower : public Item
+class Shower : Item
 {
 public:
 	Shower();
@@ -83,7 +81,7 @@ public:
 	void Use();
 };
 
-class CatBowl : public Item
+class CatBowl : Item
 {
 public:
 	CatBowl();
@@ -91,7 +89,7 @@ public:
 	void Use();
 };
 
-class Snowheap : public Item
+class Snowheap : Item
 {
 public:
 	Snowheap();
@@ -99,7 +97,7 @@ public:
 	void Use();
 };
 
-class Car : public Item
+class Car : Item
 {
 public:
 	Car();

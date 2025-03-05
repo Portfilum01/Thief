@@ -150,3 +150,25 @@ void Car::Use()
 		description = "You twist the key, and the car sparks to life, the engine hums with anticipation as you pull the hand break down and reverse out of your driveway. For today, you leave morning behind. For today, you leave a version of yourself in the past. And your adventure finshes. Thank you for playing.";
 	}
 }
+
+//Room::Room(string description, Item* item_in)
+//	: item(item_in)
+//{
+//}
+
+int Game::rooms()
+{
+	return 0;
+}
+
+Game::Game()
+{
+}
+
+Game::~Game()
+{
+}
+
+void Game::Run()
+{
+}

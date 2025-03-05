@@ -27,6 +27,8 @@ private:
 };
 
 
+//Derived Rooms
+
 // Items base
 class Item
 {
@@ -112,7 +114,7 @@ public:
 class Room
 {
 	// Points to an item
-	int* item;
+	Item* item;
 
 	//Room constructor for generating a nice room to walk around
 	Room(string description, Item* item);
@@ -121,5 +123,3 @@ class Room
 	// The actual description
 	const string description();
 };
-
-//Derived Rooms

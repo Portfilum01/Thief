@@ -105,3 +105,22 @@ void Muffins::Use()
 		description = "You finished the last muffin, There goes the meal plan you set out for the rest of the week.";
 	return Description();
 }
+
+Snowheap::Snowheap()
+{
+	snowMelted = false;
+}
+
+void Snowheap::Description()
+{
+	description =
+		" 'Huh...' "
+		"The porch is somehow covered in snow. It's not a problem, but it's certainly a strange occurence. ";
+}
+
+void Snowheap::Use()
+{
+	snowMelted = true;
+	description = "Just a puddle on the floor.";
+	return Description();
+}

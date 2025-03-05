@@ -94,6 +94,7 @@ class Snowheap : Item
 {
 public:
 	Snowheap();
+	bool snowMelted = false;
 	void Description();
 	void Use();
 };

@@ -40,7 +40,7 @@ Window::Window()
 
 void Window::Description()
 {
-	description = "It's the window. A small standing table with a potted plant sits idly by it.";
+	description = "You also see the window. A small standing table with a potted plant sits idly by it.";
 	return void();
 }
 
@@ -54,6 +54,7 @@ Ghost::Ghost()
 {
 	isBanished = false;
 }
+
 void Ghost::Description()
 {
 	description = "As you enter the room, your ears ring and a chill runs down your spine. Something unnatural is lurking here.";
@@ -63,3 +64,8 @@ void Ghost::Description()
 void Ghost::Use()
 {
 
+	// print "A deep sigh leaves your lungs, and as you focus, your mind sharpens, a wispy form latches to the room with rueful eyes"
+	//		 "you extend your hand out, and with a sudden shriek, the phantom fades away. Its presence dampened."
+	description = "Now ghost free.";
+	return Description();
+}

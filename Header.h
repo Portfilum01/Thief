@@ -44,7 +44,11 @@ class Bed : Item
 {
 public:
 	Bed();
+	bool isTidy;
+
 	void Description();
+	string description; 
+
 	void Use();
 };
 

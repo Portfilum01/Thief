@@ -56,6 +56,8 @@ class Window : Item
 {
 public:
 	Window();
+	bool isWatered;
+
 	void Description();
 	void Use();
 };
@@ -64,6 +66,8 @@ class Ghost : Item
 {
 public:
 	Ghost();
+	bool isBanished;
+
 	void Description();
 	void Use();
 };

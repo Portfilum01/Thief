@@ -33,6 +33,7 @@ void Bed::Use()
 	return Description();
 }
 
+// Window Item Class
 Window::Window()
 {
 	isWatered = false;
@@ -50,6 +51,7 @@ void Window::Use()
 	return Description();
 }
 
+// Ghost Item Class
 Ghost::Ghost()
 {
 	isBanished = false;
@@ -70,6 +72,7 @@ void Ghost::Use()
 	return Description();
 }
 
+//Shower Item Class
 Shower::Shower()
 {
 	playerClean = false;
@@ -88,6 +91,7 @@ void Shower::Use()
 	return Description();
 }
 
+// Muffins Item Class
 Muffins::Muffins()
 {
 	amountOfMuffins = 4;
@@ -106,6 +110,7 @@ void Muffins::Use()
 	return Description();
 }
 
+// Snowheap Item Class
 Snowheap::Snowheap()
 {
 	snowMelted = false;
@@ -123,4 +128,24 @@ void Snowheap::Use()
 	snowMelted = true;
 	description = "Just a puddle on the floor.";
 	return Description();
+}
+
+Car::Car()
+{
+	batteryIsDead = true;
+}
+
+void Car::Description()
+{
+	description = 
+		"You turn the key, the car's engine chugs for a minute, before you give up. The battery is likely dead."
+		"Regardless, if the battery is fixed, then this moment will be over, making way for the next moment. Today might be your last, or maybe one of many BEFORE your last. If you haven't already, make sure you take care of any business you might have in the house.";
+}
+
+void Car::Use()
+{
+	if (batteryIsDead == false)
+	{
+		description = "You twist the key, and the car sparks to life, the engine hums with anticipation as you pull the hand break down and reverse out of your driveway. For today, you leave morning behind. For today, you leave a version of yourself in the past. And your adventure finshes. Thank you for playing.";
+	}
 }

@@ -103,6 +103,7 @@ class Car : Item
 {
 public:
 	Car();
+	bool batteryIsDead;
 	void Description();
 	void Use();
 };

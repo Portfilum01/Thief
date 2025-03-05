@@ -81,10 +81,11 @@ public:
 	void Use();
 };
 
-class CatBowl : Item
+class Muffins : Item
 {
 public:
-	CatBowl();
+	Muffins();
+	int amountOfMuffins;
 	void Description();
 	void Use();
 };

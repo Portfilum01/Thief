@@ -87,3 +87,21 @@ void Shower::Use()
 	description = "You've already showered. It'd be a waste of water doing it again.";
 	return Description();
 }
+
+Muffins::Muffins()
+{
+	amountOfMuffins = 4;
+}
+
+void Muffins::Description()
+{
+	description = "besides that, there are some breakfast muffins that you've made for the week. All sat on the table on a plate.";
+}
+
+void Muffins::Use()
+{
+	amountOfMuffins -= 1;
+	if (amountOfMuffins <= 0)
+		description = "You finished the last muffin, There goes the meal plan you set out for the rest of the week.";
+	return Description();
+}

@@ -6,10 +6,7 @@ using namespace std;
 class Game
 {
 private:
-	int rooms[3][3];
-
-	// Attempt at a pointer?
-	int* Player;
+	int rooms();
 
 public:
 	Game();
@@ -29,23 +26,7 @@ private:
 	bool FindSpell(string);
 };
 
-// Room base
-class Room
-{
-	// Points to an item
-	int* item;
-	//Empty description
-	string description;
 
-	//Room constructor for generating a nice room to walk around
-	Room(string description, Item item);
-	// Destructor
-	~Room();
-	// The actual description
-	const string description();
-};
-
-//Derived Rooms
 
 
 // Items base
@@ -53,7 +34,7 @@ class Item
 {
 public:
 	//A string description
-	string description;
+	const void description();
 
 	//This is how you'll use the item
 	void use();
@@ -65,7 +46,7 @@ class Bed : public Item
 {
 public:
 	Bed();
-	const string Description();
+	const void Description();
 	void Use();
 };
 
@@ -73,7 +54,7 @@ class Mess : public Item
 {
 public:
 	Mess();
-	const string Description();
+	const void Description();
 	void Use();
 };
 
@@ -82,7 +63,7 @@ class Window : public Item
 {
 public:
 	Window();
-	const string Description();
+	const void Description();
 	void Use();
 };
 
@@ -90,7 +71,7 @@ class Ghost : public Item
 {
 public:
 	Ghost();
-	const string Description();
+	const void Description();
 	void Use();
 };
 
@@ -98,7 +79,7 @@ class Shower : public Item
 {
 public:
 	Shower();
-	const string Description();
+	const void Description();
 	void Use();
 };
 
@@ -106,7 +87,7 @@ class CatBowl : public Item
 {
 public:
 	CatBowl();
-	const string Description();
+	const void Description();
 	void Use();
 };
 
@@ -114,7 +95,7 @@ class Snowheap : public Item
 {
 public:
 	Snowheap();
-	const string Description();
+	const void Description();
 	void Use();
 };
 
@@ -122,6 +103,22 @@ class Car : public Item
 {
 public:
 	Car();
-	const string Description();
+	const void Description();
 	void Use();
 };
+
+// Room base
+class Room
+{
+	// Points to an item
+	int* item;
+
+	//Room constructor for generating a nice room to walk around
+	Room(string description, Item* item);
+	// Destructor
+	~Room();
+	// The actual description
+	const string description();
+};
+
+//Derived Rooms

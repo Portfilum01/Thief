@@ -1,6 +1,6 @@
 
 //My list of spells ill use later
-"Levitate", "Thermal Transfer", "Surge", "Hydrokinesis", "Expel"
+"Levitate", "Thermal Transfer", "Surge", "Hydro Genesis", "Expel"
 
 // House layout, its a tiny place...
 [3][3] = 

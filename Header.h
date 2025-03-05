@@ -32,7 +32,8 @@ class Item
 {
 public:
 	//A string description
-	void description();
+	void Description();
+	string description;
 
 	//This is how you'll use the item
 	void use();
@@ -46,16 +47,6 @@ public:
 	Bed();
 	bool isTidy;
 
-	void Description();
-	string description; 
-
-	void Use();
-};
-
-class Mess : Item
-{
-public:
-	Mess();
 	void Description();
 	void Use();
 };

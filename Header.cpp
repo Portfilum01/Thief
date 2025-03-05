@@ -1,7 +1,7 @@
 #include "Header.h"
 
 // Base item class. Everything is empty </3.
-void Item::description()
+void Item::Description()
 {
 	return void();
 }
@@ -11,7 +11,7 @@ void Item::use()
 	return void();
 }
 
-// Bed item class
+// Bed item Class
 
 Bed::Bed()
 {
@@ -20,13 +20,17 @@ Bed::Bed()
 
 void Bed::Description()
 {
-	description = "I'll miss you today, my comfy... cozy bed... Looks a bit messy though. Could do with a clean.";
+	description =
+		"The bed squeaks as you sit up, you look back to see it in its dishevelled state."
+		" 'I must've had a nightmare or something... my bed is a mess. Wouldn't take long to clean, I bet.' ";
 	return void();
 }
 
 void Bed::Use()
 {
 	isTidy = true;
-	description = "There, all tidy... 'thank you past me!' well, you're very welcome, future me.";
+	description =
+		"You spend the next few minutes tidying up your bed. By the end, its much tidier."
+		" 'There we are. I'll be seeing you later. Mr Bed.' ";
 	return Description();
 }

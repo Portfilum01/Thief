@@ -29,8 +29,37 @@ void Bed::Description()
 void Bed::Use()
 {
 	isTidy = true;
-	description =
-		"You spend the next few minutes tidying up your bed. By the end, its much tidier."
-		" 'There we are. I'll be seeing you later. Mr Bed.' ";
+	description = "Your bed is much cleaner, now. Its surface smoothed out.";
 	return Description();
 }
+
+Window::Window()
+{
+	isWatered = false;
+}
+
+void Window::Description()
+{
+	description = "It's the window. A small standing table with a potted plant sits idly by it.";
+	return void();
+}
+
+void Window::Use()
+{
+	cout << "You peer out the window, and you see that your backyard is cloaked in a layer of snow.";
+	return Description();
+}
+
+Ghost::Ghost()
+{
+	isBanished = false;
+}
+void Ghost::Description()
+{
+	description = "As you enter the room, your ears ring and a chill runs down your spine. Something unnatural is lurking here.";
+	return void();
+}
+
+void Ghost::Use()
+{
+

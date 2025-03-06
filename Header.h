@@ -22,12 +22,11 @@ public:
 // Player class
 class Player
 {
-private:
-	string powerList[5];
-
+public:
 	Player();
+	string spellList[];
+	bool FindSpell(string spell);
 	~Player();
-	bool FindSpell(string);
 };
 
 
@@ -37,14 +36,16 @@ private:
 class Item
 {
 public:
-	virtual ~Item() {};
 
+	Item();
 	//A string description
 	virtual void Description();
 	string description;
 
-	//This is how you'll use the item
 	virtual void Use();
+
+	virtual ~Item();
+
 };
 
 
@@ -52,11 +53,13 @@ public:
 class Bed : public Item
 {
 public:
+
 	Bed();
-	bool isTidy;
 
 	void Description() override;
 	void Use() override;
+
+	~Bed() override;
 };
 
 
@@ -66,8 +69,10 @@ public:
 	Window();
 	bool isWatered;
 
-	void Description();
-	void Use();
+	void Description() override;
+	void Use() override;
+
+	~Window() override;
 };
 
 class Ghost : Item
@@ -76,17 +81,20 @@ public:
 	Ghost();
 	bool isBanished;
 
-	void Description();
-	void Use();
+	void Description() override;
+	void Use() override;
+
+	~Ghost() override;
 };
 
 class Shower : Item
 {
 public:
 	Shower();
-	bool playerClean;
-	void Description();
-	void Use();
+	void Description() override;
+	void Use() override;
+
+	~Shower() override;
 };
 
 class Muffins : Item
@@ -96,6 +104,8 @@ public:
 	int amountOfMuffins;
 	void Description();
 	void Use();
+
+	~Muffins() override;
 };
 
 class Snowheap : Item
@@ -103,8 +113,11 @@ class Snowheap : Item
 public:
 	Snowheap();
 	bool snowMelted = false;
+
 	void Description();
 	void Use();
+
+	~Snowheap() override;
 };
 
 class Car : Item
@@ -112,8 +125,11 @@ class Car : Item
 public:
 	Car();
 	bool batteryIsDead;
+
 	void Description();
 	void Use();
+
+	~Car() override;
 };
 
 // Room base

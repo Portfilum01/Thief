@@ -9,9 +9,8 @@ void Item::Description()
 	return void();
 }
 
-void Item::use()
+void Item::Use()
 {
-	return void();
 }
 
 // Bed item Class
@@ -26,6 +25,9 @@ void Bed::Description()
 	description =
 		"The bed squeaks as you sit up, you look back to see it in its dishevelled state."
 		" 'I must've had a nightmare or something... my bed is a mess. Wouldn't take long to clean, I bet.' ";
+
+	std::cout << description;
+
 	return void();
 }
 
@@ -83,7 +85,7 @@ Shower::Shower()
 
 void Shower::Description()
 {
-	description = "The pristine white tiles are encased in glass, might be worth having a quick shower before heading out.";
+	description = "The pristine white tiles are encased in glass panes, might be worth having a quick shower before heading out.";
 	return void();
 }
 
@@ -123,7 +125,7 @@ void Snowheap::Description()
 {
 	description =
 		" 'Huh...' "
-		"The porch is somehow covered in snow. It's not a problem, but it's certainly a strange occurence. ";
+		"The porch is somehow covered in snow. It's not a problem, but it's certainly strange. ";
 }
 
 void Snowheap::Use()

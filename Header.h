@@ -37,28 +37,30 @@ private:
 class Item
 {
 public:
+	virtual ~Item() {};
+
 	//A string description
-	void Description();
+	virtual void Description();
 	string description;
 
 	//This is how you'll use the item
-	void use();
+	virtual void Use();
 };
 
 
 //Derived Items
-class Bed : Item
+class Bed : public Item
 {
 public:
 	Bed();
 	bool isTidy;
 
-	void Description();
-	void Use();
+	void Description() override;
+	void Use() override;
 };
 
 
-class Window : Item
+class Window : public Item
 {
 public:
 	Window();

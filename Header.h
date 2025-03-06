@@ -7,9 +7,13 @@ class Game
 {
 public:
 	Game();
+
 	int rooms[3][3];
 	int playerPosition;
 	bool gameRunning;
+	int row;
+	int column;
+
 	string playerInput;
 	~Game();
 	void Run();

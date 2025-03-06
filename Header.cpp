@@ -169,7 +169,9 @@ Game::Game()
 	}
 {
 	gameRunning = true;
-	playerPosition = rooms[1][1];
+	row = 0;
+	column = 0;
+	playerPosition = rooms[column][row];
 }
 
 Game::~Game()
@@ -183,14 +185,24 @@ void Game::Run()
 		cout << "What should you do next?" << '\n' << endl;
 		//cin.ignore();
 		getline(cin, playerInput);
+		
+		if (playerInput == "move north" && column > 0)
+		{
+			column -= 1;
+		}
 
-		if (playerInput == "move north")
-			cout << "moved north" << '\n';
-		else if (playerInput == "move east")
-			cout << "moved east" << '\n';
-		else if (playerInput == "move south")
-			cout << "moved south" << '\n';
-		else if (playerInput == "move west")
-			cout << "moved west" << '\n';
+		else if (playerInput == "move east" && row < 2)
+			row += 1;
+
+		else if (playerInput == "move south" && column < 2)
+			column += 1;
+
+		else if (playerInput == "move west" && row > 0)
+			row -= 1;
+
+		else
+			cout << "can't move that way, theres a wall." << endl;
+
+		cout << playerPosition << " " << row << " " << column << " " << endl;
 	}
 }

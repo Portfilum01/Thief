@@ -5,14 +5,14 @@ using namespace std;
 // Game Class
 class Game
 {
-private:
-	int rooms();
-
 public:
 	Game();
+	int rooms[3][3];
+	int playerPosition;
+	bool gameRunning;
+	string playerInput;
 	~Game();
 	void Run();
-
 };
 
 // Player class

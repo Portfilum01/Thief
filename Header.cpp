@@ -1,4 +1,7 @@
+#include <string>
+#include <iostream>
 #include "Header.h"
+using namespace std;
 
 // Base item class. Everything is empty </3.
 void Item::Description()
@@ -156,13 +159,17 @@ void Car::Use()
 //{
 //}
 
-int Game::rooms()
-{
-	return 0;
-}
 
 Game::Game()
+	: rooms
+	{ 
+		1, 2, 3,
+		4, 5, 6,
+		7, 8, 9,
+	}
 {
+	gameRunning = true;
+	playerPosition = rooms[1][1];
 }
 
 Game::~Game()
@@ -171,4 +178,19 @@ Game::~Game()
 
 void Game::Run()
 {
+	while (gameRunning)
+	{
+		cout << "What should you do next?" << '\n' << endl;
+		//cin.ignore();
+		getline(cin, playerInput);
+
+		if (playerInput == "move north")
+			cout << "moved north" << '\n';
+		else if (playerInput == "move east")
+			cout << "moved east" << '\n';
+		else if (playerInput == "move south")
+			cout << "moved south" << '\n';
+		else if (playerInput == "move west")
+			cout << "moved west" << '\n';
+	}
 }

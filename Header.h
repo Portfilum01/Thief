@@ -2,29 +2,12 @@
 #include <iostream>
 using namespace std;
 
-// Game Class
-class Game
-{
-public:
-	Game();
-
-	int rooms[3][3];
-	int playerPosition;
-	bool gameRunning;
-	int row;
-	int column;
-
-	string playerInput;
-	~Game();
-	void Run();
-};
-
 // Player class
 class Player
 {
 public:
 	Player();
-	string spellList[];
+	string spellList[7];
 	bool FindSpell(string spell);
 	~Player();
 };
@@ -135,13 +118,33 @@ public:
 // Room base
 class Room
 {
+public:
 	// Points to an item
 	Item* item;
 
 	//Room constructor for generating a nice room to walk around
 	Room(string description, Item* item);
-	// Destructor
-	~Room();
+
 	// The actual description
 	const string description();
+
+	// Destructor
+	~Room();
+};
+
+// Game Class
+class Game
+{
+public:
+	Game();
+
+	Room rooms[3][3];
+	int playerPosition;
+	bool gameRunning;
+	int row;
+	int column;
+
+	string playerInput;
+	~Game();
+	void Run();
 };

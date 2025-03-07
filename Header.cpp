@@ -190,15 +190,47 @@ Car::~Car()
 // Player
 Player::Player()
 // Mah spells!
+	: spellList
 {
-	spellList[7] = "Levitate", "Hear Thoughts", "Heatwave", "Surge", "Torrent", "Banish", "Project";
+	"Banish", "Heatwave", "Levitate", "Project", "Surge", "Telepathy", "Torrent"
+}
+{
 }
 
-//bool Player::FindSpell(string spell)
-//{
-//	if (spell == spellList[4]);
-//
-//}
+// Making the binary search function
+int BinarySearcher(string list[], string result, int sizeOfArray)
+{
+	int firstElement = 0;
+	int lastElement = sizeOfArray - 1;
+	int results = -1;
+	while (firstElement <= lastElement)
+	{
+		int middleElement = (lastElement + firstElement) / 2;
+
+		if (result == list[middleElement])
+			results = 0;
+
+		if (results == 0)
+			return middleElement;
+
+		if (result < list[middleElement])
+			lastElement = middleElement - 1;
+			
+			
+		if (result > list[middleElement])
+			firstElement = middleElement + 1;
+	}
+	return -1;
+}
+
+bool Player::FindSpell(string spell)
+{
+	int result = BinarySearcher(spellList, spell, 7);
+	if (result == -1)
+		return -1;
+	else if (result == 0)
+		return result;
+}
 
 Player::~Player()
 {
@@ -209,16 +241,25 @@ Player::~Player()
 Room::Room(string description, Item* item_in)
 	: item(item_in)
 {
+
 }
 
+const string Room::description()
+{
+	return string();
+}
+
+Room::~Room()
+{
+}
 
 Game::Game()
-//Defines the rooms that are available.
+//Defines the rooms that are available to roam in.
 	: rooms
 	{ 
-		1, 2, 3,
+		Room("Your room, it's a bit bland, a bookshelf sits opposite from your bed which sits against the window. Next to your bed is a desk with a computer.", Item(Bed) ), /*2, 3,
 		4, 5, 6,
-		7, 8, 9,
+		7, 8, 9,*/
 	}
 {
 	// Some useful variables to help move around the house and also start the game.
@@ -232,17 +273,17 @@ Game::~Game()
 {
 }
 
-// A quick tool to allow me to block certain rooms from other rooms, such as from the bedroom to the bathroom (1 to 4).
-bool IfSpace(int pos, int* blockedRooms, int arrayLength)
-{
-	// Checks to see if the pos (players position) is in a room where you cant move to a different room from.
-	for (int i = 0; i < arrayLength; i++)
-	{
-		if (pos == blockedRooms[i])
-			return true;
-	}
-	return false;
-}
+//// A quick tool to allow me to block certain rooms from other rooms, such as from the bedroom to the bathroom (1 to 4).
+//bool IfSpace(int pos, int* blockedRooms, int arrayLength)
+//{
+//	// Checks to see if the pos (players position) is in a room where you cant move to a different room from.
+//	for (int i = 0; i < arrayLength; i++)
+//	{
+//		if (pos == blockedRooms[i])
+//			return true;
+//	}
+//	return false;
+//}
 
 void Game::Run()
 {
@@ -257,7 +298,7 @@ void Game::Run()
 		{
 			// Blocks anyone in room 4 (the bathroom) from going north to the bedroom, etc etc.
 			int blockedRooms[3] = { 4, 7, 8 };
-			if (column == 0 || IfSpace(playerPosition, blockedRooms, 3))
+			if (column == 0)
 				cout << "A boundary, it blocks my path." << '\n';
 			//Otherwise, moves the character
 			else
@@ -291,8 +332,57 @@ void Game::Run()
 
 		//Checks for spell information
 		else if (playerInput == "abilities")
-			cout << "Levitate, " << "Hear Thoughts, " << "Heatwave, " << "Surge, " << "Torrent, " << "Banish, " << "Project" << endl;
+			cout << "Levitate, " << "Telepathy, " << "Heatwave, " << "Surge, " << "Torrent, " << "Banish, " << "Project" << endl;
 
+		//Every spell is checked in the 
+		else if (playerInput == "levitate")
+		{
+			Player castingLevitate;
+			castingLevitate.FindSpell("levitate");
+			cout << "You hover slightly above the floor, an ultimate display of power! I guess." << endl;
+		}
+
+		else if (playerInput == "telepathy")
+		{
+			Player castingLevitate;
+			castingLevitate.FindSpell("telepathy");
+			cout << "You... cannot hear anyone." << endl;
+		}
+
+		else if (playerInput == "heatwave")
+		{
+			Player castingLevitate;
+			castingLevitate.FindSpell("heatwave");
+			cout << "A wave of heat emits from your palms, could be useful later since it just snowed." << endl;
+		}
+
+		else if (playerInput == "surge")
+		{
+			Player castingLevitate;
+			castingLevitate.FindSpell("surge");
+			cout << "A current of electricity crackles through your fingertips." << endl;
+		}
+
+		else if (playerInput == "torrent")
+		{
+			Player castingLevitate;
+			castingLevitate.FindSpell("torrent");
+			cout << "Water drips from your hands, and now the floor is wet." << endl;
+		}
+
+		else if (playerInput == "banish")
+		{
+			Player castingLevitate;
+			castingLevitate.FindSpell("banish");
+			cout << "It would be useful in the presence of spectres or ne'erdowells, but you're not really in either's presence." << endl;
+		}
+
+		else if (playerInput == "project")
+		{
+			Player castingLevitate;
+			castingLevitate.FindSpell("project");
+			cout << "Now is probably not the best time for astral projection" << endl;
+		}
 		// If none of the above, does nothing
 		else
 			cout << "No valid input detected" << endl;

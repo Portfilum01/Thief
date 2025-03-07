@@ -62,7 +62,7 @@ class Ghost : public Item
 {
 public:
 	Ghost();
-	bool isBanished;
+	bool isVisible;
 
 	void Description() override;
 	void Use() override;
@@ -74,6 +74,7 @@ class Shower : public Item
 {
 public:
 	Shower();
+	bool hasShowered;
 	void Description() override;
 	void Use() override;
 

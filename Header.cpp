@@ -61,13 +61,21 @@ Window::Window()
 
 void Window::Description()
 {
-	description = "You also see the window. A small standing table with a potted plant sits idly by it.";
+	if(isWatered == false)
+	{
+		description = "You also see the window. A small standing table with a potted plant sits idly by it. Looks a bit thirsty.";
+	}
+
+	else if (isWatered == true)
+	{
+		description = "With a bit of a drink, it seems a bit more... lively.";
+	}
 	return void();
 }
 
 void Window::Use()
 {
-	description = "You peer out the window, and you see that your backyard is cloaked in a layer of snow.";
+	isWatered = true;
 	return Description();
 }
 
@@ -78,21 +86,28 @@ Window::~Window()
 // Ghost Item Class
 Ghost::Ghost()
 {
-	isBanished = false;
+	isVisible = false;
 }
 
 void Ghost::Description()
 {
-	description = "As you enter the room, your ears ring and a chill runs down your spine. Something unnatural is lurking here.";
+	if (isVisible == false)
+	{
+		description = "As you enter the room, your ears ring and a chill runs down your spine. Something unnatural is lurking here.";
+	}
+	else if (isVisible == true)
+	{
+		description =
+			"Having sharpened your mind, you can notice the wispy form that latches to the room with rueful eyes."
+			" 'Where are you all coming from...' you'd mumble to yourself.";
+	}
 	return void();
 }
 
+
 void Ghost::Use()
 {
-	//		 "you extend your hand out, and with a sudden shriek, the phantom fades away. Its presence dampened."
-	description = 
-		"Having sharpened your mind, you can notice the wispy form that latches to the room with rueful eyes."
-		" 'Where are you all coming from...' you'd mumble to yourself.";
+	isVisible = true;
 	return Description();
 }
 
@@ -103,17 +118,25 @@ Ghost::~Ghost()
 //Shower Item Class
 Shower::Shower()
 {
+	hasShowered = false;
 }
 
 void Shower::Description()
 {
-	description = "The pristine white tiles are encased in glass panes, might be worth having a quick shower before heading out.";
+	if (hasShowered == false)
+	{
+		description = "The pristine white tiles are encased in glass panes, might be worth having a quick shower before heading out.";
+	}
+	if (hasShowered == true)
+	{
+		description = "You've already showered. It'd be a waste of water doing it again.";
+	}
 	return void();
 }
 
 void Shower::Use()
 {
-	description = "You've already showered. It'd be a waste of water doing it again.";
+	hasShowered = true;
 	return Description();
 }
 
@@ -129,14 +152,23 @@ Muffins::Muffins()
 
 void Muffins::Description()
 {
-	description = "besides that, there are some breakfast muffins that you've made for the week. All sat on the table on a plate.";
+	if (amountOfMuffins == 4)
+	{
+		description = "besides that, there are some breakfast muffins that you've made for the week. All sat on the table on a plate.";
+	}
+	if (amountOfMuffins > 0 || amountOfMuffins < 4)
+	{
+		description = "you've already had a muffin, theres a few left.";
+	}
+	if (amountOfMuffins == 0)
+	{
+		description = " 'Ah... my gluttony knows no bounds...' ";
+	}
 }
 
 void Muffins::Use()
 {
 	amountOfMuffins -= 1;
-	if (amountOfMuffins <= 0)
-		description = "You finished the last muffin, There goes the meal plan you set out for the rest of the week.";
 	return Description();
 }
 
@@ -152,15 +184,21 @@ Snowheap::Snowheap()
 
 void Snowheap::Description()
 {
-	description =
-		" 'Huh...' "
-		" 'Thats... a lot of snow. ' ";
+	if(snowMelted == false)
+	{
+		description =
+			" 'Huh... my porch is... covered.' "
+			" 'Thats... a lot of snow. ' ";
+	}
+	else if (snowMelted == true)
+	{
+		description = "Melted with your mind, nothing but a sad puddle now.";
+	}
 }
 
 void Snowheap::Use()
 {
 	snowMelted = true;
-	description = "Just a puddle on the floor.";
 	return Description();
 }
 
@@ -176,19 +214,24 @@ Car::Car()
 
 void Car::Description()
 {
-	description = 
-		"You turn the key, the car's engine chugs for a minute, before you give up. The battery is likely dead."
-		"You recall the time you felt a SURGE of electricity from your mind fry your phone. ";
+	if(batteryIsDead == true)
+	{
+		description =
+			"You turn the key, the car's engine chugs for a minute, before you give up. The battery is likely dead."
+			"You recall the time you felt a SURGE of electricity from your mind fry your phone. ";
+	}
+	else if (batteryIsDead == false)
+	{
+		description =
+			"You twist the, the engine purrs as it comes to life. You reverse out of your house, and head to class."
+			"Thanks for playing!";
+	}
 }
 
 void Car::Use()
 {
-	if (batteryIsDead == false)
-	{
-		description = 
-			"You twist the, the engine purrs as it comes to life. You reverse out of your house, and head to class."
-			"Thanks for playing!";
-	}
+	batteryIsDead = false;
+	return Description();
 }
 
 Car::~Car()

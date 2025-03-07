@@ -58,7 +58,7 @@ public:
 	~Window() override;
 };
 
-class Ghost : Item
+class Ghost : public Item
 {
 public:
 	Ghost();
@@ -70,7 +70,7 @@ public:
 	~Ghost() override;
 };
 
-class Shower : Item
+class Shower : public Item
 {
 public:
 	Shower();
@@ -80,37 +80,37 @@ public:
 	~Shower() override;
 };
 
-class Muffins : Item
+class Muffins : public Item
 {
 public:
 	Muffins();
 	int amountOfMuffins;
-	void Description();
-	void Use();
+	void Description() override;
+	void Use() override;
 
 	~Muffins() override;
 };
 
-class Snowheap : Item
+class Snowheap : public Item
 {
 public:
 	Snowheap();
 	bool snowMelted = false;
 
-	void Description();
-	void Use();
+	void Description() override;
+	void Use() override;
 
 	~Snowheap() override;
 };
 
-class Car : Item
+class Car : public Item
 {
 public:
 	Car();
 	bool batteryIsDead;
 
-	void Description();
-	void Use();
+	void Description() override;
+	void Use() override;
 
 	~Car() override;
 };
@@ -123,7 +123,7 @@ public:
 	Item* item;
 
 	//Room constructor for generating a nice room to walk around
-	Room(string description, Item* item);
+	Room(const string& description, Item* item);
 
 	// The actual description
 	const string description();
@@ -138,8 +138,16 @@ class Game
 public:
 	Game();
 
+	Bed bed;
+	Window window;
+	Ghost ghost;
+	Shower shower;
+	Muffins muffins;
+	Snowheap snowheap;
+	Car car;
+
 	Room rooms[3][3];
-	int playerPosition;
+	Room& playerPosition;
 	bool gameRunning;
 	int row;
 	int column;

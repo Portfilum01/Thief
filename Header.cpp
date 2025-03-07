@@ -146,7 +146,7 @@ void Snowheap::Description()
 {
 	description =
 		" 'Huh...' "
-		"The porch is somehow covered in snow. It's not a problem, but it's certainly strange. ";
+		" 'Thats... a lot of snow. ' ";
 }
 
 void Snowheap::Use()
@@ -238,10 +238,17 @@ Player::~Player()
 
 // Rooms
 
-Room::Room(string description, Item* item_in)
+Room::Room(const string& description, Item* item_in)
 	: item(item_in)
 {
-
+	if (item_in != nullptr)
+	{
+		cout << description << endl;
+		item_in->Use();
+		cout << item_in->description << endl;
+	}
+	else
+		cout << "nothing of note in this room" << endl;
 }
 
 const string Room::description()
@@ -253,37 +260,37 @@ Room::~Room()
 {
 }
 
+
+
 Game::Game()
 //Defines the rooms that are available to roam in.
 	: rooms
 	{ 
-		Room("Your room, it's a bit bland, a bookshelf sits opposite from your bed which sits against the window. Next to your bed is a desk with a computer.", Item(Bed) ), /*2, 3,
-		4, 5, 6,
-		7, 8, 9,*/
+		Room("Your room, it's a bit bland, a bookshelf sits opposite from your bed which sits against the window. Next to your bed is a desk with a computer.", &bed),Room("The hallway, some plush carpet stretches along its length.", &window), Room("Snow blankets the grass, and birds sing their songs. Also, I'm freezing.", nullptr),
+		Room("The bathroom is small, tiled with white marble.", &shower), Room("The living room, just a couch, and a tv with a coffee table.", &ghost), Room("The Kitchen, where all my eating happens. The dinning table is also here.", &muffins),
+		Room("You step into the car, the end of your morning draws close.", &car), Room("The car is in view, this morning is just about done, you'd think.", nullptr), Room("The doorway, accompanied with railing alongside the porch.", &snowheap)
 	}
 {
 	// Some useful variables to help move around the house and also start the game.
 	gameRunning = true;
 	row = 0;
 	column = 0;
-	playerPosition = rooms[column][row];
+	
+	Room& playerPosition = rooms[column][row];
+
 }
 
-Game::~Game()
+// A quick tool to allow me to block certain rooms from other rooms, such as from the bedroom to the bathroom (1 to 4).
+bool IfSpace(int pos, int* blockedRooms, int arrayLength)
 {
+	// Checks to see if the pos (players position) is in a room where you cant move to a different room from.
+	for (int i = 0; i < arrayLength; i++)
+	{
+		if (pos == blockedRooms[i])
+			return true;
+	}
+	return false;
 }
-
-//// A quick tool to allow me to block certain rooms from other rooms, such as from the bedroom to the bathroom (1 to 4).
-//bool IfSpace(int pos, int* blockedRooms, int arrayLength)
-//{
-//	// Checks to see if the pos (players position) is in a room where you cant move to a different room from.
-//	for (int i = 0; i < arrayLength; i++)
-//	{
-//		if (pos == blockedRooms[i])
-//			return true;
-//	}
-//	return false;
-//}
 
 void Game::Run()
 {
@@ -388,8 +395,11 @@ void Game::Run()
 			cout << "No valid input detected" << endl;
 
 		// Updates playerPosition and prints spatial information
-		playerPosition = rooms[column][row];
+		//playerPosition = rooms[column][row];
 		cout << playerPosition << " " << row << " " << column << " " << endl;
 	}
 }
 
+Game::~Game()
+{
+}

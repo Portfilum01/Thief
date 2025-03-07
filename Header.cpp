@@ -24,20 +24,28 @@ Item::~Item()
 
 Bed::Bed()
 {
+	bedFixed = false;
 }
 
 void Bed::Description()
 {
-	description =
-		"The bed squeaks as you sit up, you look back to see it in its dishevelled state."
-		" 'I must've had a nightmare or something... my bed is a mess. Wouldn't take long to clean, I bet.' ";
+	if(bedFixed == false)
+	{
+		description =
+			"The bed squeaks as you sit up, you look back to see it in its dishevelled state."
+			" 'I must've had a nightmare or something... my bed is a mess. Wouldn't take long to clean, I bet.' ";
+	}
 
+	else if (bedFixed == true)
+	{
+		description = "Your bed is much cleaner, now. Its surface smoothed out.";
+	}
 	return void();
 }
 
 void Bed::Use()
 {
-	description = "Your bed is much cleaner, now. Its surface smoothed out.";
+	bedFixed = true;
 	return Description();
 }
 
@@ -195,6 +203,7 @@ Player::Player()
 	"Banish", "Heatwave", "Levitate", "Project", "Surge", "Telepathy", "Torrent"
 }
 {
+
 }
 
 // Making the binary search function
@@ -202,16 +211,13 @@ int BinarySearcher(string list[], string result, int sizeOfArray)
 {
 	int firstElement = 0;
 	int lastElement = sizeOfArray - 1;
-	int results = -1;
+	bool results = false;
 	while (firstElement <= lastElement)
 	{
 		int middleElement = (lastElement + firstElement) / 2;
 
 		if (result == list[middleElement])
-			results = 0;
-
-		if (results == 0)
-			return middleElement;
+			results = true;
 
 		if (result < list[middleElement])
 			lastElement = middleElement - 1;
@@ -225,8 +231,8 @@ int BinarySearcher(string list[], string result, int sizeOfArray)
 
 bool Player::FindSpell(string spell)
 {
-	int result = BinarySearcher(spellList, spell, 7);
-	if (result == -1)
+	bool result = BinarySearcher(spellList, spell, 7);
+	if (result = false)
 		return -1;
 	else if (result == 0)
 		return result;
@@ -241,16 +247,25 @@ Player::~Player()
 Room::Room(const string& description, Item* item_in)
 	: item(item_in)
 {
+
 	if(item_in != nullptr)
 	{
-		item_in->Use();
 		item_in->Description();
+		itemDescription = item_in->description;
 	}
+
+	roomDescription = description;
+	
 }
 
-const string Room::description()
+void Room::PrintDescription()
 {
-	return string();
+	cout << roomDescription << endl;
+
+	if (item != nullptr)
+	{
+		cout << item->description << endl;;
+	}
 }
 
 Room::~Room()
@@ -258,14 +273,13 @@ Room::~Room()
 }
 
 
-
 Game::Game()
 //Defines the rooms that are available to roam in.
 	: rooms
 {
-		Room("Your room, it's a bit bland, a bookshelf sits opposite from your bed which sits against the window. Next to your bed is a desk with a computer.", &bed),Room("The hallway, some plush carpet stretches along its length.", &window), Room("Snow blankets the grass, and birds sing their songs. Also, I'm freezing.", nullptr),
-		Room("The bathroom is small, tiled with white marble.", &shower), Room("The living room, just a couch, and a tv with a coffee table.", &ghost), Room("The Kitchen, where all my eating happens. The dinning table is also here.", &muffins),
-		Room("You step into the car, the end of your morning draws close.", &car), Room("The car is in view, this morning is just about done, you'd think.", nullptr), Room("The doorway, accompanied with railing alongside the porch.", &snowheap)
+		Room("Your room, it's a bit bland, a bookshelf sits opposite from your bed which sits against the window. Next to your bed is a desk with a computer. Besides that, your door leads out to the hallway eastward.", &bed),Room("The hallway, some plush carpet stretches along its length. Leads down south.", &window), Room("Snow blankets the grass, and birds sing their songs. Also, I'm freezing. The door is behind you, west.", nullptr),
+		Room("The bathroom is small, tiled with white marble. The exit behind you leads east", &shower), Room("The living room, just a couch, and a tv with a coffee table. Westward is the bathroom, Northward is the hallway, Eastward is the kitchen", &ghost), Room("The Kitchen, where all my eating happens. The dinning table is also here. Westward is the Living room, Northward is the backyard, southward your front yard.", &muffins),
+		Room("You step into the car, the end of your morning draws close. You can go back by heading east.", &car), Room("The car is in view, this morning is just about done, you'd think. The path leads either west or east.", nullptr), Room("The doorway, accompanied with railing alongside the porch. You can head west to get to your car, or you can head north to go back inside.", &snowheap)
 }
 // Some useful variables to help move around the house and also start the game.
 {
@@ -288,15 +302,19 @@ bool IfSpace(int pos, int* blockedRooms, int arrayLength)
 
 void Game::Run()
 {
-	Room& playerPosition = rooms[column][row];
+	
 	while (gameRunning)
 	{
+		
+		Room& playerPosition = rooms[column][row];
+		playerPosition.PrintDescription();
+
 		cout << "What should you do next?" << '\n' << endl;
 		//cin.ignore();
 		getline(cin, playerInput);
 		
 		// Checks for movement
-		if (playerInput == "move north")
+		if (playerInput == "move north" || playerInput == "north")
 		{
 			// Blocks anyone in room 4 (the bathroom) from going north to the bedroom, etc etc.
 			if (column == 0)
@@ -306,7 +324,7 @@ void Game::Run()
 				column -= 1;
 		}
 		// This is repeated for each direction, however east and west dont need them since theyve only got one room where you can't move that certain direction in.
-		else if (playerInput == "move east")
+		else if (playerInput == "move east" || playerInput == "east")
 		{
 			if (row == 2)
 				cout << "A boundary, it blocks my path." << '\n';
@@ -314,7 +332,7 @@ void Game::Run()
 				row += 1;
 		}
 
-		else if (playerInput == "move south")
+		else if (playerInput == "move south" || playerInput == "south")
 		{
 			if (column == 2)
 				cout << "A boundary, it blocks my path." << '\n';
@@ -322,7 +340,7 @@ void Game::Run()
 				column += 1;
 		}
 
-		else if (playerInput == "move west")
+		else if (playerInput == "move west" || playerInput == "west")
 		{
 			if (row == 0)
 				cout << "A boundary, it blocks my path." << '\n';
@@ -330,10 +348,18 @@ void Game::Run()
 				row -= 1;
 		}
 
+		// Checks if the player uses an object
+
+
+		else if (playerInput == "use" || playerInput == "interact")
+		{
+			playerPosition.item->Use();
+		}
+
 		//Checks for spell information
 		else if (playerInput == "abilities")
 			cout << "Levitate, " << "Telepathy, " << "Heatwave, " << "Surge, " << "Torrent, " << "Banish, " << "Project" << endl;
-
+		
 		//Every spell is checked in the 
 		else if (playerInput == "levitate")
 		{

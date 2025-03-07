@@ -38,7 +38,7 @@ class Bed : public Item
 public:
 
 	Bed();
-
+	bool bedFixed;
 	void Description() override;
 	void Use() override;
 
@@ -121,12 +121,14 @@ class Room
 public:
 	// Points to an item
 	Item* item;
+	string roomDescription;
+	string itemDescription;
 
 	//Room constructor for generating a nice room to walk around
 	Room(const string& description, Item* item);
 
 	// The actual description
-	const string description();
+	void PrintDescription();
 
 	// Destructor
 	~Room();

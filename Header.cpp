@@ -59,7 +59,7 @@ void Window::Description()
 
 void Window::Use()
 {
-	cout << "You peer out the window, and you see that your backyard is cloaked in a layer of snow.";
+	description = "You peer out the window, and you see that your backyard is cloaked in a layer of snow.";
 	return Description();
 }
 
@@ -241,14 +241,11 @@ Player::~Player()
 Room::Room(const string& description, Item* item_in)
 	: item(item_in)
 {
-	if (item_in != nullptr)
+	if(item_in != nullptr)
 	{
-		cout << description << endl;
 		item_in->Use();
-		cout << item_in->description << endl;
+		item_in->Description();
 	}
-	else
-		cout << "nothing of note in this room" << endl;
 }
 
 const string Room::description()
@@ -265,19 +262,16 @@ Room::~Room()
 Game::Game()
 //Defines the rooms that are available to roam in.
 	: rooms
-	{ 
+{
 		Room("Your room, it's a bit bland, a bookshelf sits opposite from your bed which sits against the window. Next to your bed is a desk with a computer.", &bed),Room("The hallway, some plush carpet stretches along its length.", &window), Room("Snow blankets the grass, and birds sing their songs. Also, I'm freezing.", nullptr),
 		Room("The bathroom is small, tiled with white marble.", &shower), Room("The living room, just a couch, and a tv with a coffee table.", &ghost), Room("The Kitchen, where all my eating happens. The dinning table is also here.", &muffins),
 		Room("You step into the car, the end of your morning draws close.", &car), Room("The car is in view, this morning is just about done, you'd think.", nullptr), Room("The doorway, accompanied with railing alongside the porch.", &snowheap)
-	}
+}
+// Some useful variables to help move around the house and also start the game.
 {
-	// Some useful variables to help move around the house and also start the game.
 	gameRunning = true;
 	row = 0;
 	column = 0;
-	
-	Room& playerPosition = rooms[column][row];
-
 }
 
 // A quick tool to allow me to block certain rooms from other rooms, such as from the bedroom to the bathroom (1 to 4).
@@ -294,6 +288,7 @@ bool IfSpace(int pos, int* blockedRooms, int arrayLength)
 
 void Game::Run()
 {
+	Room& playerPosition = rooms[column][row];
 	while (gameRunning)
 	{
 		cout << "What should you do next?" << '\n' << endl;
@@ -304,7 +299,6 @@ void Game::Run()
 		if (playerInput == "move north")
 		{
 			// Blocks anyone in room 4 (the bathroom) from going north to the bedroom, etc etc.
-			int blockedRooms[3] = { 4, 7, 8 };
 			if (column == 0)
 				cout << "A boundary, it blocks my path." << '\n';
 			//Otherwise, moves the character
@@ -314,7 +308,7 @@ void Game::Run()
 		// This is repeated for each direction, however east and west dont need them since theyve only got one room where you can't move that certain direction in.
 		else if (playerInput == "move east")
 		{
-			if (row == 2 || playerPosition == 2)
+			if (row == 2)
 				cout << "A boundary, it blocks my path." << '\n';
 			else
 				row += 1;
@@ -322,8 +316,7 @@ void Game::Run()
 
 		else if (playerInput == "move south")
 		{
-			int blockedRooms[3] = { 1, 4, 5 };
-			if (column == 2 || IfSpace(playerPosition, blockedRooms, 3))
+			if (column == 2)
 				cout << "A boundary, it blocks my path." << '\n';
 			else
 				column += 1;
@@ -331,7 +324,7 @@ void Game::Run()
 
 		else if (playerInput == "move west")
 		{
-			if (row == 0 || playerPosition == 3)
+			if (row == 0)
 				cout << "A boundary, it blocks my path." << '\n';
 			else
 				row -= 1;
@@ -396,7 +389,7 @@ void Game::Run()
 
 		// Updates playerPosition and prints spatial information
 		//playerPosition = rooms[column][row];
-		cout << playerPosition << " " << row << " " << column << " " << endl;
+		cout << " " << row << " " << column << " " << endl;
 	}
 }
 

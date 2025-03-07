@@ -147,7 +147,6 @@ public:
 	Car car;
 
 	Room rooms[3][3];
-	Room& playerPosition;
 	bool gameRunning;
 	int row;
 	int column;
